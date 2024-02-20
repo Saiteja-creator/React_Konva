@@ -1,0 +1,23 @@
+{
+  "name": "react_konva",
+  "version": "1.0.0",
+  "description": "react-konva project",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saiteja",
+  "license": "ISC",
+  "dependencies": {
+    "konva": "^9.3.3",
+    "parcel": "^2.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-konva": "^18.2.10",
+    "react-router-dom": "^6.22.1"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  }
+}
