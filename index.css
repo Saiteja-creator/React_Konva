@@ -1,0 +1,64 @@
+ *{
+    margin: 0px;
+    box-sizing: border-box; 
+ }
+ body {
+    overflow: hidden;
+  }
+ 
+ .app-container{
+    display: flex;
+    overflow: hidden; 
+    min-width: none;
+    box-sizing: border-box
+}
+
+.top-container{
+    width: 100%;
+    display: flex;
+    
+}
+
+.left_container{
+    width: 20vw;
+   
+}
+
+.right_container{
+    width: 80vw;
+    
+}
+.hr{
+    color: black;
+    height: 100vh;
+    border: 1px solid #ccc; /* Light gray border */
+    margin: 0; /* Remove default margins */
+}
+.hrVer{
+    color: black;
+    border: 1px solid #ccc; /* Light gray border */
+    margin: 0; /* Remove default margins */
+}
+
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px;
+    padding: 10px;
+    height: 20%;
+}
+
+.header{
+    font-size: bold;
+    font-size: 20px;
+}
+
+.header-icons{
+    
+    
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

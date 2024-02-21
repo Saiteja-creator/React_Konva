@@ -6,10 +6,19 @@ import CanvasPage from './components/CanvasPage';
 
 const App=()=>{
   return (
-    <div >
-      <h4 className='heading'>Post for customers missing orders cyle</h4>
-      <CanvasPage/>
-     
+    <div className='app-container'>
+      <div className='top-container'>
+       <div className='left_container shadow-lg'>left container</div>
+       <div ><hr className='hr'/></div>
+       
+       <div className='right_container'>
+        <div>
+            <CanvasPage/>
+        </div>
+
+       </div>
+      </div>
+      
     </div>
   )
 }
