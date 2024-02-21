@@ -1,24 +1,50 @@
-import React, { useState } from 'react';
-import { Stage, Layer, Text } from 'react-konva';
+import React, { useState,useRef } from 'react';
+import { Stage, Layer, Text,Transformer } from 'react-konva';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUndo, faRedo, faBold, faItalic, faUnderline, faAlignLeft, faAlignCenter, faAlignRight, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const CanvasPage = () => {
-  const [text, setText] = useState('Type your text here');
+  const [text, setText] = useState('Hello World');
   const [fontSize, setFontSize] = useState(20);
-  const [fontColor, setFontColor] = useState('black');
+  const [fontColor, setFontColor] = useState('#rrggbb');
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
+  const [selectedFontStyle, setSelectedFontStyle] = useState("Arial");
+  const handleFontStyleChange = (e) => {
+    setSelectedFontStyle(e.target.value);
+    // You can perform any other actions related to font style change here
+  };
+  
+  
+
+  const [selected, setSelected] = useState(false);
+  const textRef = useRef();
+
+  const handleSelect = () => {
+    setSelected(true);
+  };
+
+  const handleDeselect = () => {
+    setSelected(false);
+  };
+
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
+  
 
   const decreaseFontSize = () => {
     setFontSize(fontSize - 1);
   };
 
+  
+
   const increaseFontSize = () => {
     setFontSize(fontSize + 1);
   };
 
+  console.log(text,"Return the text from userState")
   return (
     <div>
       <div className='header-container flex align-center shadow-lg '>
@@ -47,7 +73,7 @@ const CanvasPage = () => {
           
           </div>
           {/* Font size controls */}
-          <FontAwesomeIcon icon={faBold} onClick={() => setIsBold(!isBold)} style={{ color: isBold ? 'blue' : 'black' }} className='mr-3 mt-2'/>
+          <FontAwesomeIcon icon={faBold} onClick={() => setIsBold(!isBold)} style={{ color: isBold ? 'blue' : 'black' }} className='mr-3 mt-2 '/>
           <FontAwesomeIcon icon={faItalic} onClick={() => setIsItalic(!isItalic)} style={{ color: isItalic ? 'blue' : 'black' }} className='mr-3 mt-2' />
           <FontAwesomeIcon icon={faUnderline} onClick={() => setIsUnderline(!isUnderline)} style={{ color: isUnderline ? 'blue' : 'black' }} className='mr-3 mt-2' />
           {/* Implement alignment icons */}
@@ -60,32 +86,55 @@ const CanvasPage = () => {
         </div>
         <div className='bg-blue-100 h-screen flex justify-center'>
         
-          <div className='bg-white w-4/5 h-70 mt-7 flex justify-center align-middle'>
+          <div className='bg-white w-4/5 h-70 mt-7 flex p-6'>
             {/* Canvas area for text */}
-          <Stage width={window.innerWidth} height={window.innerHeight}>
-            <Layer>
-              <Text
-                text={text}
-                fontSize={fontSize}
-                fill={fontColor}
-                fontStyle={isItalic ? 'italic' : 'normal'}
-                fontWeight={isBold ? 'bold' : 'normal'}
-                textDecoration={isUnderline ? 'underline' : 'none'}
-                x={window.innerWidth / 2}
-                y={window.innerHeight / 2}
-                align="center"
-                width={200} // Set according to your requirement
-                height={100} // Set according to your requirement
-                draggable
-                onDragEnd={(e) => {
-                  setText(e.target.text());
-                }}
-                onTransformEnd={(e) => {
-                  setText(e.target.text());
-                }}
-              />
-            </Layer>
-          </Stage>
+            <Stage width={window.innerWidth} height={window.innerHeight}>
+              <Layer>
+                <Text
+                  text={text}
+                  fontSize={fontSize}
+                  fill={fontColor}
+                  fontStyle={isItalic ? 'italic' : 'normal'}
+                  fontFamily={selectedFontStyle}
+                  fontWeight={isBold ? 'bold' : 'normal'}
+                  textDecoration={isUnderline ? 'underline' : 'none'}
+                  
+                 
+                  // Set according to your requirement
+                  draggable
+                  editable
+                  onDragEnd={(e) => {
+                    setText(e.target.text());
+                  }}
+                  onTransformEnd={(e) => {
+                    setText(e.target.text());
+                  }}
+                
+                />
+                {selected && (
+                  <Transformer
+                    ref={textRef}
+                    boundBoxFunc={(oldBox, newBox) => {
+                      // Limit the minimum size of the text
+                      newBox.width = Math.max(30, newBox.width);
+                      newBox.height = Math.max(30, newBox.height);
+                      return newBox;
+                    }}
+                  />
+                )}
+              </Layer>
+              {selected && (
+                <div>
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={handleInputChange}
+                    onBlur={handleDeselect}
+                    autoFocus 
+                  />
+                </div>
+              )}
+            </Stage>
           </div>
         </div>
       </div>
