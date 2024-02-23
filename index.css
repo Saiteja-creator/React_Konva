@@ -54,9 +54,21 @@
     font-size: 20px;
 }
 
-.header-icons{
+.text-container{
+    border:0px;
+    border: none;
+    width: 100%;
+    border-color: pink;
+    margin: 10px;
     
-    
+}
+
+.quil-container{
+    height: 50%;
+}
+.ql-editor{
+    min-height: 100vh;
+    border:none
 }
 
 @tailwind base;
