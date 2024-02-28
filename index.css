@@ -3,7 +3,7 @@
     box-sizing: border-box; 
  }
  body {
-    overflow: hidden;
+    
   }
  
  .app-container{
@@ -20,12 +20,12 @@
 }
 
 .left_container{
-    width: 20vw;
+    width: 21vw;
    
 }
 
 .right_container{
-    width: 80vw;
+    width: 75vw;
     
 }
 .hr{
@@ -66,10 +66,8 @@
 .quil-container{
     height: 50%;
 }
-.ql-editor{
-    min-height: 100vh;
-    border:none
-}
+
+
 
 @tailwind base;
 @tailwind components;
