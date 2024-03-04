@@ -1,6 +1,8 @@
  *{
     margin: 0px;
     box-sizing: border-box; 
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
  }
  body {
     
@@ -20,12 +22,15 @@
 }
 
 .left_container{
-    width: 21vw;
+    width: 29vw;
+   
+    
    
 }
 
 .right_container{
-    width: 75vw;
+    width: 71vw;
+    height: 100vh;
     
 }
 .hr{
@@ -65,6 +70,13 @@
 
 .quil-container{
     height: 50%;
+}
+
+.left-container{
+    width: 23vw
+}
+.render-container{
+    height: 80vh;
 }
 
 
