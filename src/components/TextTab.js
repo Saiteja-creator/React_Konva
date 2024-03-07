@@ -12,7 +12,7 @@ export const TextTab = () => {
   }
   const addButton=()=>{
     const uniqueId = Math.random().toString(36).substr(2, 9);
-    console.log(uniqueId); // Output will be a random alphanumeric string
+    
 
     const newText={
       textEditVisible: false,
@@ -23,10 +23,10 @@ export const TextTab = () => {
       textXTextArea: 0,
       textValue: text,
       fontSize: 28,
-      width: 250,
+      width: 300,
       y: 100,
       x: 100,
-      height: 150,
+      height: 100,
       fontStyle: "normal",
       align: "left",
       id: uniqueId ,
@@ -34,6 +34,9 @@ export const TextTab = () => {
     }
     setArrayObjectsLayer((prevArray)=>[...prevArray,newText])
     setSelectedObject(newText)
+    const length=setArrayObjectsLayer.length 
+    
+    
     
     setText("")
    
@@ -41,7 +44,7 @@ export const TextTab = () => {
   return (
     <div>
       <div className='flex my-3'>
-        <textarea type="text" value={text} className='mr-1 h-6 border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-300' onChange={changeEl}/>
+        <textarea type="text" column={10} value={text} className='mr-1 h-6 border border-gray-600 px-4 py-2 rounded-md focus:outline-none focus:border-blue-300' onChange={changeEl}/>
         <button type="button" onClick={addButton}>Add</button>
       </div>
     </div>

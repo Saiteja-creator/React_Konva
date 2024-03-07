@@ -5,7 +5,7 @@ import useImage from 'use-image';
 
 
 const SingleImage=({imageProps,isSelected,onSelect,onChange})=>{
-  console.log(imageProps,"imageProps UploadSingle")
+  
   const [image] = useImage(imageProps.image);
 
 

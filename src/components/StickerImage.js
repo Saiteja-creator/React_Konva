@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const StickerImage=()=>{
-    const {addStickerToPanel,setArrayObjectsLayer,setSelectedObject } = useContext(StickerContext);
+    const {setArrayObjectsLayer,setSelectedObject } = useContext(StickerContext);
     return (
         <div className="flex justify-center flex-wrap">
            
@@ -18,17 +18,9 @@ const StickerImage=()=>{
                 <button
                     className="button"
                     onMouseDown={() => {
-                    addStickerToPanel({
-                        id:uuidv4(),
-                        src: sticker.url,
-                        width: sticker.width,
-
-                        x: 40,
-                        y: 40,
-                        type:"StickerImage"
-                    });
+                    const idres=uuidv4()
                     setArrayObjectsLayer((prevArray)=>[...prevArray,{
-                        id:uuidv4(),
+                        id:idres,
                         src: sticker.url,
                         width: sticker.width,
                         height:150,
@@ -37,7 +29,7 @@ const StickerImage=()=>{
                         type:"StickerImage"
                     }])
                     setSelectedObject({
-                        id:uuidv4(),
+                        id:idres,
                         src: sticker.url,
                         width: sticker.width,
                         height:150,
@@ -45,6 +37,7 @@ const StickerImage=()=>{
                         y: 40,
                         type:"StickerImage"
                     })
+
                     }}
                 >
                     <img alt={sticker.alt} src={sticker.url} width={sticker.width} className="mr-2" />

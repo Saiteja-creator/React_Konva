@@ -11,7 +11,7 @@ const LeftPageNav=[
 ]
 
 export const LeftPage = () => {
-  const [Tab,setTab] = useState(LeftPageNav[0].id)
+  const [Tab,setTab] = useState(LeftPageNav[1].id)
   return (
     <div className='ml-4 '>
       <div>

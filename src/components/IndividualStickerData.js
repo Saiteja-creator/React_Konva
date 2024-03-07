@@ -3,7 +3,7 @@ import {Group,Image,Text,Transformer} from 'react-konva'
 import useImage from 'use-image';
 
 export const IndividualStickerData = ({imageProps,isSelected,onSelect,onChange}) => {
-  console.log(imageProps.src,"return the ImageProps of IndividualSticker")
+  
   
   const [stickerImage] = useImage(imageProps.src);
   const imageRef = React.useRef();

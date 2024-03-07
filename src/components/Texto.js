@@ -1,4 +1,9 @@
 import React from "react";
+import React, { useState, useRef, useEffect,useContext } from "react"
+import { TextEditor } from "./TextEditor";
+
+
+
 import {
   Stage,
   Layer,
@@ -11,9 +16,12 @@ import {
   TextPath,
   Star,
   Label,
+  Group,
   RegularPolygon,
   Transformer
 } from "react-konva";
+
+
 
 
 export const Texto = ({
@@ -24,10 +32,12 @@ export const Texto = ({
     index,
     handleTextDblClick
   }) => {
-    console.log("TEXTOREAD")
+    
     const shapeRef = React.useRef();
     const trRef = React.useRef();
     
+    
+   
     React.useEffect(() => {
       if (isSelected) {
         // we need to attach transformer manually
@@ -35,49 +45,72 @@ export const Texto = ({
         trRef.current.getLayer().batchDraw();
       }
     }, [isSelected]);
+
+    
   
     return (
       <React.Fragment>
-        <Text
-          {...shapeProps}
-          ref={shapeRef}
-          fontSize={shapeProps.fontSize}
-          align={shapeProps.align}
-          fontStyle={shapeProps.fontStyle}
-          draggable
-          text={shapeProps.textValue}
-          x={shapeProps.x}
-          y={shapeProps.y}
-          wrap="word"
-          width={shapeProps.width}
-          onDblClick={e => handleTextDblClick(e, index)}
-          onClick={() => onSelect(index)}
-          onDragEnd={e => {
-            onChange({
-              ...shapeProps,
-              x: e.target.x(),
-              y: e.target.y()
-            });
-          }}
-          onTransformEnd={e => {
-            // transformer is changing scale
-            const node = shapeRef.current;
-            const scaleX = node.scaleX();
-            const scaleY = node.scaleY();
-            // we will reset it back
-            node.scaleX(1);
-            node.scaleY(1);
-            onChange({
-              ...shapeProps,
-              rotation: node.rotation(),
-              x: node.x(),
-              y: node.y(),
-              width: node.width() * scaleX,
-              height: node.height() * scaleY
-            });
-          }}
-        />
+        <Group>
+          <Text
+            {...shapeProps}
+            ref={shapeRef}
+            fontSize={shapeProps.fontSize}
+            align={shapeProps.align}
+            fontStyle={shapeProps.fontStyle}
+            draggable
+            text={shapeProps.textValue}
+            x={shapeProps.x}
+            y={shapeProps.y}
+            wrap="word"
+            width={shapeProps.width}
+            onDblClick={e => handleTextDblClick(e, index)}
+            onClick={() => onSelect(index)}
+           
+            onDragEnd={e => {
+              onChange({
+                ...shapeProps,
+                x: e.target.x(),
+                y: e.target.y()
+              });
+            }}
+            onTransformEnd={e => {
+              // transformer is changing scale
+              const node = shapeRef.current;
+              const scaleX = node.scaleX();
+              const scaleY = node.scaleY();
+              // we will reset it back
+              node.scaleX(1);
+              node.scaleY(1);
+              onChange({
+                ...shapeProps,
+                rotation: node.rotation(),
+                x: node.x(),
+                y: node.y(),
+                width: node.width() * scaleX,
+                height: node.height() * scaleY
+              });
+            }}
+          />{shapeProps.textEditVisible&& (
+            <TextEditor
+              value={shapeProps.textValue}
+              textNodeRef={shapeRef}
+              onChange={newValue => {
+                onChange({
+                  ...shapeProps,
+                  textValue:newValue
+                });
+              }}
+              onBlur={() => {
+                onChange({
+                  ...shapeProps,
+                  textEditVisible:false
+                })
+              }}
+            />
+          )}
+        </Group>
         {isSelected && <Transformer ref={trRef} />}
+        
       </React.Fragment>
     );
   };

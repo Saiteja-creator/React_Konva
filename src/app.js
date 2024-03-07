@@ -5,12 +5,6 @@ import {CreateContextProvider} from '../context/CreateContext';
 import { RightContainer } from "./components/RightContainer";
 
 
-
-
-
-
-
-
 const App=()=>{
   return (
     <div className="flex ">

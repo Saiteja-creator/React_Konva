@@ -4,7 +4,7 @@ import { v1 as uuidv1 } from 'uuid';
 
 export const ImportImage = () => {
     const uuid = uuidv1();
-    const {ImportImage,setImportImage,setArrayObjectsLayer,setSelectedObject} = useContext(StickerContext);
+    const {setArrayObjectsLayer,setSelectedObject} = useContext(StickerContext);
     const handleImageLoad=(event)=>{
         const file=event.target.files;
         const newImages=[];
@@ -22,7 +22,7 @@ export const ImportImage = () => {
                 id: `image_${uuid}`,
                 });
                 if (newImages.length === file.length) {
-                    setImportImage((prevImages) => [...prevImages, ...newImages])
+                    
                     setArrayObjectsLayer((prevArray)=>[...prevArray,...newImages]) 
                     setSelectedObject({
                         x: 10 + i * 50, 
@@ -38,6 +38,8 @@ export const ImportImage = () => {
             reader.readAsDataURL(file[i]);
             
         }
+       
+
         
         
 
