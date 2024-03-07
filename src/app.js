@@ -1,5 +1,4 @@
-
-import { LeftPage } from "./components/LeftPage";
+import { LeftPage } from './components/LeftPage';
 import { createRoot } from 'react-dom/client';
 import {CreateContextProvider} from '../context/CreateContext';
 import { RightContainer } from "./components/RightContainer";

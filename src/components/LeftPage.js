@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
-import StickerImage from './StickerImage'
+import StickerImage from './StickerImages'
 import { TextTab } from './TextTab'
 
 import { ImportImage } from './ImportImage'
 
 const LeftPageNav=[
   {id:"STICKERS",text:"stickers"},
-  {id:"TEXT",text:"text"},
+  {id:"TEXT",text:"font Styles"},
   {id:"IMAGE", text:"Image"}
 ]
 

@@ -4,7 +4,7 @@ import { v1 as uuidv1 } from 'uuid';
 
 export const ImportImage = () => {
     const uuid = uuidv1();
-    const {setArrayObjectsLayer,setSelectedObject} = useContext(StickerContext);
+    const {setArrayObjectsLayer,setSelectedObject, setIndexTextSelected} = useContext(StickerContext);
     const handleImageLoad=(event)=>{
         const file=event.target.files;
         const newImages=[];

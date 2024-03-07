@@ -98,6 +98,7 @@ export const RightContainer = () => {
          <div className="my-10 ml-4">
             <Stage  ref={stageRef}
             width={1000}
+            
             height={480}  onMouseDown={(e) => {
               // deselect when clicked on empty area
               

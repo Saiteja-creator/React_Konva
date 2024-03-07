@@ -21,6 +21,7 @@ export const TextEditor = ({
     newStyle.padding = '0px';
     newStyle.overflow = 'hidden';
     
+    newStyle.fontWeight = textNodeRef.current.value.fontStyle
     newStyle.background = 'none';
     newStyle.outline = 'none';
     newStyle.resize = 'none';

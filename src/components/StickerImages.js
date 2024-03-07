@@ -24,8 +24,8 @@ const StickerImage=()=>{
                         src: sticker.url,
                         width: sticker.width,
                         height:150,
-                        x: 40,
-                        y: 40,
+                        x: 400,
+                        y: 150,
                         type:"StickerImage"
                     }])
                     setSelectedObject({

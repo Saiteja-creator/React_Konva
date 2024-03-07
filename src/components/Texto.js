@@ -57,6 +57,7 @@ export const Texto = ({
             fontSize={shapeProps.fontSize}
             align={shapeProps.align}
             fontStyle={shapeProps.fontStyle}
+            fontFamily={shapeProps.fontFamily}
             draggable
             text={shapeProps.textValue}
             x={shapeProps.x}
@@ -65,6 +66,7 @@ export const Texto = ({
             width={shapeProps.width}
             onDblClick={e => handleTextDblClick(e, index)}
             onClick={() => onSelect(index)}
+            visible={!shapeProps.textEditVisible}
            
             onDragEnd={e => {
               onChange({
