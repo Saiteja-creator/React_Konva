@@ -1,62 +1,67 @@
 import myImages from "./Images/random1.png"
 import myImages2 from './Images/random2.png'
 import ReactImage from './Images/reactLogo.png'
+import box from './Images/box.png'
+import deliveryImage from './Images/delivery (1).png'
+import orderNow from './Images/order-now (1).png'
+import telePhone from './Images/telephone.png'
+import tracking from './Images/tracking.png'
+import restaurant from './Images/restaurant-app.png'
+import checkout from './Images/checkout.png'
+import order from './Images/order.png'
+import boxCheck from './Images/box-check.png'
 
 export const stickersData = [
     {
-      url:"https://konvajs.org/assets/lion.png",
+      url:box,
       width:90,
-      alt:"lion Page"
+      alt:"box Page"
     },
     
     
     {
-      url:myImages2,
+      url:deliveryImage,
       width:90,
-      alt:"lion Page"
+      alt:"deliveryImage"
     },
     {
-      url:ReactImage,
+      url:orderNow,
       width:90,
-      alt:"lion Page"
+      alt:"orderNow"
     },
 
     {
-      url: myImages,
+      url: telePhone,
       width: 90,
-      alt: "Eiffel Tower"
+      alt: "telePhone"
     },
     {
-      url: "https://th.bing.com/th?id=OIP.Nmc9b4sLq4oDmG6gHxDfuwAAAA&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
-      width: 80,
-      alt: "Statue of Liberty"
+      url: tracking,
+      width: 90,
+      alt: tracking
     },
     
     {
-      url:"https://th.bing.com/th/id/OIP.blVDdjP_zzKtoB9PgPOi6QHaCR?w=308&h=107&c=7&r=0&o=5&pid=1.7",
-      width:80,
+      url:restaurant,
+      width:90,
       alt:"TeluguSticker"
     },
     {
-      url:"https://th.bing.com/th/id/OIP.BQDKIFyHyeVRu41ScX0CzQHaHa?w=207&h=206&c=7&r=0&o=5&pid=1.7",
-      width:80,
+      url:checkout,
+      width:90,
       alt:"call"
     },
     {
-      url:"https://th.bing.com/th/id/OIP.CezdMWxMYXsUKhSPyW7liAHaHa?w=208&h=208&c=7&r=0&o=5&pid=1.7",
-      width:70,
+      url:order,
+      width:90,
       alt:"call"
     },
     {
-      url:"https://th.bing.com/th/id/OIP.C01_CNqQHoMKo86cewZfpwHaHa?w=152&h=180&c=7&r=0&o=5&pid=1.7",
-      width:60,
+      url:boxCheck,
+      width:90,
       alt:"call"
     },
-    {
-      url:"https://th.bing.com/th/id/OIP.-ers7_sy1fxapQTeHbabbwHaHa?pid=ImgDet&w=207&h=207&c=7",
-      width:100,
-      alt:"call"
-    },
+    
     
     
   ];
