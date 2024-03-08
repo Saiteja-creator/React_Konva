@@ -21,7 +21,7 @@ export const TextEditor = ({
     newStyle.padding = '0px';
     newStyle.overflow = 'hidden';
     
-    newStyle.fontWeight = textNodeRef.current.value.fontStyle
+   
     newStyle.background = 'none';
     newStyle.outline = 'none';
     newStyle.resize = 'none';
@@ -44,6 +44,9 @@ export const TextEditor = ({
       newStyle.marginLeft = margins.left + 'px';
       newStyle.marginRight = margins.right + 'px';
       newStyle.marginBottom = margins.bottom + 'px';
+      newStyle.textDecoration=textNode.textDecoration()
+      newStyle.fontWeight =textNode.fontStyle()
+      
 
     if (JSON.stringify(newStyle) !== JSON.stringify(style)) {
       setStyle(newStyle);

@@ -11,7 +11,7 @@ export const RightContainer = () => {
   const stageRef =useRef()
   const {setArrayObjectsLayer,selectedObject,arrayObjectsLayer,setSelectedObject,History,setHistory,indexHistory,setindexHistory} = useContext(StickerContext);
   
-  
+  console.log(selectedObject)
 
 
   // useEffect(()=>{
@@ -41,7 +41,7 @@ export const RightContainer = () => {
     }
   };
 
-  const selectShape=(item,index)=>{
+  const selectShape=(item,index=undefined)=>{
     for (let i; i < arrayObjectsLayer.length; i++) {
       
       arrayObjectsLayer[i].textEditVisible = false;
@@ -50,8 +50,10 @@ export const RightContainer = () => {
     
   }
 
-  const handleExport = () => {
-    setSelectedObject(null)
+  
+
+  const handleExport =async () => {
+    await setSelectedObject(null)
     const stage = stageRef.current.getStage();
     
     const dataURL = stage.toDataURL();
@@ -108,14 +110,14 @@ export const RightContainer = () => {
               }
             }}>
               <Layer>
-                  <Rect width={window.innerWidth} height={window.innerHeight}
+                  <Rect width={window.innerWidth} height={window.innerHeight} 
           
                   fill="white"
                   onMouseDown={e => {
                   //deselect when clicking an empty area
                   const clickedOnEmpty = e.target === e.target.getStage();
                   if(clickedOnEmpty) {
-                    selectShape(null);
+                    setSelectedObject(null);
                   }
                 }}
                 />

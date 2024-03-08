@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect,useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBold, faItalic, faUnderline, faTrash,faMinus,faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBold, faItalic, faUnderline, faTrash,faMinus,faPlus, faAlignLeft, faAlignRight, faAlignCenter, faAlignJustify,faStrikethrough } from '@fortawesome/free-solid-svg-icons';
 
 import { StickerContext } from '../../context/CreateContext';
 
@@ -28,6 +28,7 @@ import React from 'react'
 export const Style = () => {
     const [color,setColor]=useState('#000000')
     const [fontFamily, setFontFamily] = useState('Arial');
+    const [alignment, setAlignment] = useState('left');
     const {arrayObjectsLayer,selectedObject,setHistory,setArrayObjectsLayer,setSelectedObject,setindexHistory} = useContext(StickerContext);
     let index;
     if (selectedObject){
@@ -37,11 +38,10 @@ export const Style = () => {
     
 
     const removeItem=()=>{
-        console.log("Delete of Element ",index)
-        console.log("return the selectElement",selectedObject)
+        
         if (selectedObject){
             let updateArray=arrayObjectsLayer.filter((each)=>each.id!==selectedObject.id)
-            console.log("return the UpdateArray", updateArray)
+           
             setArrayObjectsLayer(updateArray)
             setHistory(prevHistory => prevHistory.concat([updateArray]));
             setindexHistory(prevIndex => prevIndex + 1);
@@ -126,6 +126,78 @@ export const Style = () => {
             setindexHistory(prevIndex => prevIndex + 1);
         }    
     };
+
+    const alignTextIcon = () => {
+        let newAlignment;
+        if (alignment === 'left') {
+            newAlignment = 'center';
+        } else if (alignment === 'center') {
+            newAlignment = 'right';
+        } else if (alignment === 'right') {
+            newAlignment = 'justify';
+        } else {
+            newAlignment = 'left';
+        }
+        setAlignment(newAlignment);
+
+        if (arrayObjectsLayer[index]) {
+            let updateObject = { ...arrayObjectsLayer[index] };
+            updateObject.align = newAlignment;
+
+            setSelectedObject(updateObject);
+            arrayObjectsLayer[index] = updateObject;
+            setArrayObjectsLayer(arrayObjectsLayer);
+            setHistory(prevHistory => prevHistory.concat([arrayObjectsLayer]));
+            setindexHistory(prevIndex => prevIndex + 1);
+        }
+    };
+
+
+    const alignText = (alignment) => {
+        let newAlignment;
+        if (alignment === 'left') {
+            newAlignment = 'center';
+        } else if (alignment === 'center') {
+            newAlignment = 'right';
+        } else if (alignment === 'right') {
+            newAlignment = 'justify';
+        } else {
+            newAlignment = 'left';
+        }
+        if (arrayObjectsLayer[index]) {
+            let updateObject = { ...arrayObjectsLayer[index] };
+            const stageWidth = 980
+            const textWidth = updateObject.width;
+            let newX;
+            if (alignment === 'right') {
+                newX = stageWidth - textWidth;
+            } else if (alignment === 'center') {
+                newX = (stageWidth - textWidth) / 2;
+            } else {
+                newX = 0;
+            }
+            updateObject.x = newX;
+            setSelectedObject(updateObject);
+            arrayObjectsLayer[index] = updateObject;
+            setArrayObjectsLayer(arrayObjectsLayer);
+            setHistory(prevHistory => prevHistory.concat([arrayObjectsLayer]));
+            setindexHistory(prevIndex => prevIndex + 1);
+        }
+    };
+
+    let alignmentIcon;
+    if (alignment === 'left') {
+        alignmentIcon = <FontAwesomeIcon icon={faAlignLeft} />;
+    } else if (alignment === 'center') {
+        alignmentIcon = <FontAwesomeIcon icon={faAlignCenter} />;
+    } else if (alignment === 'right') {
+        alignmentIcon = <FontAwesomeIcon icon={faAlignRight} />;
+    } else {
+        alignmentIcon = <FontAwesomeIcon icon={faAlignJustify} />;
+    }
+
+
+
     return (
         <div>
             <div className="flex bg-white-500 shadow-lg p-2 h-11 " >
@@ -201,7 +273,31 @@ export const Style = () => {
                   : {}
               }
             >
+            
             <FontAwesomeIcon icon={faUnderline}/>
+            </div>
+            <div
+              className="containerIconeToolbar mr-3"
+              onClick={() =>
+                setUnderline(
+                  arrayObjectsLayer[index] &&
+                    arrayObjectsLayer[index].textDecoration == "line-through"
+                    ? ""
+                    : "line-through"
+                )
+              }
+              style={
+                arrayObjectsLayer[index] &&
+                  arrayObjectsLayer[index].textDecoration == "line-through"
+                  ? { backgroundColor: "grey" }
+                  : {}
+              }
+            >
+            <FontAwesomeIcon icon={faStrikethrough}/>
+            
+            </div>
+            <div className="containerIconeToolbar mr-3" onClick={alignText}>
+                    {alignmentIcon}
             </div>
             <div >
                 <FontAwesomeIcon icon={faTrash} onClick={removeItem}/>
