@@ -11,7 +11,7 @@ export const RightContainer = () => {
   const stageRef =useRef()
   const {setArrayObjectsLayer,selectedObject,arrayObjectsLayer,setSelectedObject,History,setHistory,indexHistory,setindexHistory} = useContext(StickerContext);
   
-  console.log(selectedObject)
+  
 
 
   // useEffect(()=>{
@@ -25,6 +25,11 @@ export const RightContainer = () => {
     setHistory(prevHistory => prevHistory.concat([items]));
     setindexHistory(prevIndex => prevIndex + 1);
 
+  }
+
+  const setArrayObjectEvent=(items)=>{
+    setArrayObjectsLayer(items)
+    
   }
 
   const handleUndo = () => {
@@ -79,7 +84,21 @@ export const RightContainer = () => {
   }
  
 
-  
+  useEffect(()=>{
+    // Add your cleanup function
+    return () => {
+      // Destroy Konva objects
+      const stage = stageRef.current.getStage();
+      if (stage) {
+        const layer = stage.findOne('.layer');
+        if (layer) {
+          layer.destroy();
+        }
+        stage.destroy();
+      }
+    };
+
+  },[])
   
 
   return (
@@ -171,6 +190,11 @@ export const RightContainer = () => {
                         const items = arrayObjectsLayer.slice();
                         items[index] = newAttrs;
                         setArrayObject(items);
+                      }}
+                      onChangeEvent={(newAttrs) => {
+                        const items = arrayObjectsLayer.slice();
+                        items[index] = newAttrs;
+                        setArrayObjectEvent(items);
                       }}
                     />):false
                 })}

@@ -196,8 +196,10 @@ export const Style = () => {
         alignmentIcon = <FontAwesomeIcon icon={faAlignJustify} />;
     }
 
-
-
+    let fontsizeData=18
+    if (selectedObject && selectedObject.type==="text"){
+         fontsizeData=parseInt(selectedObject.fontSize)
+    }
     return (
         <div>
             <div className="flex bg-white-500 shadow-lg p-2 h-11 " >
@@ -213,7 +215,7 @@ export const Style = () => {
             </div>
 
             <div>
-                {selectedObject && selectedObject.type==="text"?<p className="mx-1">{selectedObject.fontSize}</p>:<p className="mx-1">18</p>}
+                {selectedObject && selectedObject.type==="text"?<p className="mx-1">{fontsizeData}</p>:<p className="mx-1">18</p>}
             </div>
             <div className="mr-3" onClick={(e)=>{ChangeFontSize("Increment")}}>
                 <FontAwesomeIcon icon={faPlus} className="w-3" />

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const StickerImage=()=>{
-    const {setArrayObjectsLayer,setSelectedObject } = useContext(StickerContext);
+    const {setArrayObjectsLayer,setSelectedObject,setHistory,setindexHistory } = useContext(StickerContext);
     return (
         <div className="flex justify-center flex-wrap">
            
@@ -37,6 +37,17 @@ const StickerImage=()=>{
                         y: 40,
                         type:"StickerImage"
                     })
+                    setHistory((prevHistory)=>[...prevHistory,[{
+                        id:idres,
+                        src: sticker.url,
+                        width: sticker.width,
+                        height:150,
+                        x: 40,
+                        y: 40,
+                        type:"StickerImage"
+                    }]])
+                    setindexHistory(prevIndex => prevIndex + 1);
+
 
                     }}
                 >

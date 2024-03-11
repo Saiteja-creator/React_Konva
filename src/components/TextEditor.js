@@ -1,3 +1,4 @@
+import { text } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
 import { Html } from 'react-konva-utils';
 
@@ -8,6 +9,9 @@ export const TextEditor = ({
   onBlur
 }) => {
   const [style, setStyle] = React.useState();
+  const [textEdit, setTextEdit] = React.useState(value);
+  const [textareaHeight, setTextareaHeight] = React.useState(textNodeRef.current.height());
+  
   React.useLayoutEffect(() => {
     const textNode = textNodeRef.current;
     // apply many styles to match text on canvas as close as possible
@@ -53,6 +57,23 @@ export const TextEditor = ({
     }
   });
 
+  const handleTextareaChange = (event) => {
+    let arrayRes=[]
+
+    setTextEdit(event.target.value);
+    if (textareaHeight !== event.target.scrollHeight){
+      setTextareaHeight(event.target.scrollHeight);
+    }
+
+    
+    arrayRes.push(textEdit)
+    arrayRes.push(textareaHeight)
+    onChange(arrayRes)
+    
+     // Adjusting textarea height based on content
+    
+  };
+
   return (
     <Html>
       <textarea
@@ -60,9 +81,9 @@ export const TextEditor = ({
         style={{
           ...style,
         }}
-        value={value}
-        onChange={(e) => {
-          onChange(e.target.value);
+        value={textEdit}
+        onChange={(event) => {
+          handleTextareaChange(event)
         }}
         onBlur={onBlur}
        

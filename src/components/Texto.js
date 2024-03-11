@@ -30,11 +30,14 @@ export const Texto = ({
     onSelect,
     onChange,
     index,
-    handleTextDblClick
+    handleTextDblClick,
+    onChangeEvent
   }) => {
     
     const shapeRef = React.useRef();
     const trRef = React.useRef();
+
+    
     
     
    
@@ -80,11 +83,13 @@ export const Texto = ({
               const node = shapeRef.current;
               const scaleX = node.scaleX();
               const scaleY = node.scaleY();
+              const newFontSize = shapeProps.fontSize * scaleY;
               // we will reset it back
               node.scaleX(1);
               node.scaleY(1);
               onChange({
                 ...shapeProps,
+                fontSize:newFontSize,
                 rotation: node.rotation(),
                 x: node.x(),
                 y: node.y(),
@@ -97,9 +102,11 @@ export const Texto = ({
               value={shapeProps.textValue}
               textNodeRef={shapeRef}
               onChange={newValue => {
-                onChange({
+                
+                onChangeEvent({
                   ...shapeProps,
-                  textValue:newValue
+                  textValue:newValue[0],
+                  height:newValue[1]
                 });
               }}
               onBlur={() => {
@@ -111,7 +118,7 @@ export const Texto = ({
             />
           )}
         </Group>
-        {isSelected && <Transformer ref={trRef} />}
+        {isSelected && <Transformer ref={trRef}flipEnabled={false}  />}
         
       </React.Fragment>
     );
